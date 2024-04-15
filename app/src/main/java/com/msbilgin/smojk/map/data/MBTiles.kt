@@ -27,7 +27,7 @@ class MBTiles private constructor(private val sqliteDatabase: SQLiteDatabase) {
         }
     }
 
-    fun getBase64(x: Int, y: Int, z: Int): String? {
+    fun getBase64DataURL(x: Int, y: Int, z: Int): String? {
         val yy = (Math.pow(2.0, z.toDouble()) - 1 - y).toInt()
         val sql =
             "select tile_data from tiles where zoom_level=$z and tile_column=$x and tile_row=$yy"
@@ -35,8 +35,10 @@ class MBTiles private constructor(private val sqliteDatabase: SQLiteDatabase) {
         sqliteDatabase.rawQuery(sql, null).use { cursor ->
             if (cursor?.moveToFirst() == true) {
                 val data = cursor.getBlob(0);
-                val base64 = "data:image/jpg;base64," + Base64.encodeToString(data, Base64.NO_WRAP);
-                return base64;
+                val base64 = Base64.encodeToString(data, Base64.NO_WRAP)
+                val mime = if (base64.startsWith("/9g")) "image/jpg" else "image/png"
+                val base64DataURL = "data:$mime;base64,$base64";
+                return base64DataURL;
             } else {
                 return null;
             }
