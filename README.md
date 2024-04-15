@@ -14,11 +14,11 @@ Native(Kotlin)-->>OpenLayers(JS): data
 
 
 ## Data
- **Spatialite** was choosed to store vector data and  **MBTiles** for tile data. These two are highly adopted GIS data formats. You can find sample datasets inside **{project_dir}/app/src/main/assets/gis_data** folder. In this project two vector layers are used: railway, taxi_stands. Keep in mind that; sample datasets increases apk size.
+ **Spatialite** was choosed to store vector data and  **MBTiles** for tile data. These two are highly adopted GIS data formats. You can find sample datasets inside **{project_dir}/app/src/main/assets/gis_data** folder. Vector layers stored in **istanbul.sqlite** file and tiles stored in **basemap.mbtiles**. In this project two vector layers are used: railway, taxi_stands. **Spatialite** layers must have spatial index.
 
 ## Kotlin (Native) side
 
-https://github.com/sevar83/android-spatialite library was preferred to enable **Spatialite** features. Note that spatialite layers must have spatial index.
+https://github.com/sevar83/android-spatialite library was preferred to enable **Spatialite** features.
 
 ## JavaScript (OpenLayers) side
 Project's JS source code for map library is in **{project_dir}/js** folder. You should run **npm i** command inside that folder to install neccessary libs. Also you can run **npm run build** to compile and deploy JS source code. The build will be copied to the **assets/map** folder. 
