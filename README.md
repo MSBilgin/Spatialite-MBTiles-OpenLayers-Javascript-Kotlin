@@ -4,12 +4,12 @@ This project aims completely offline mapping scenario. OpenLayers library was pr
 
 ```mermaid
 sequenceDiagram
-OpenLayers(JS) ->> Native(Kotlin): map move event
-Native(Kotlin)->>Spatialite: get features by bbox
-Native(Kotlin)->>MBTiles: get tiles by xyz
-MBTiles-->>Native(Kotlin): tile image in base64 format
-Spatialite-->>Native(Kotlin): feature data in wkt format
-Native(Kotlin)-->>OpenLayers(JS): data
+JavaScript(OpenLayers) ->> Kotlin(Native): map move event
+Kotlin(Native)->>Spatialite: get features by bbox
+Kotlin(Native)->>MBTiles: get tiles by xyz
+MBTiles-->>Kotlin(Native): tile image in base64 format
+Spatialite-->>Kotlin(Native): feature data in wkt format
+Kotlin(Native)-->>JavaScript(OpenLayers): data
 ```
 
 
