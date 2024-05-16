@@ -7,7 +7,7 @@ sequenceDiagram
 JavaScript(OpenLayers) ->> Kotlin(Native): map move event
 Kotlin(Native)->>Spatialite: get features by bbox
 Kotlin(Native)->>MBTiles: get tiles by xyz
-MBTiles-->>Kotlin(Native): tile image in base64 format
+MBTiles-->>Kotlin(Native): tile data in base64 format
 Spatialite-->>Kotlin(Native): feature data in wkt format
 Kotlin(Native)-->>JavaScript(OpenLayers): data
 ```
